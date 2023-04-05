@@ -1,7 +1,8 @@
-const morgan = require("morgan");
 const express = require("express");
 
 const app = express();
+
+app.use(express.static("build"));
 
 let persons = [
   {
@@ -25,10 +26,6 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
-
-app.use(
-  morgan(":method :url :status :res[content-length] - :response-time ms :body")
-);
 
 app.get("/api/persons", (request, response) => {
   response.json(persons);
@@ -79,10 +76,6 @@ app.post("/api/persons", (request, response) => {
 
   persons.push(newPerson);
   response.json(newPerson);
-
-  morgan.token("body", (req) => {
-    return JSON.stringify(req.body);
-  });
 });
 
 app.delete("/api/persons/:id", (request, response) => {
