@@ -64,7 +64,6 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
-      {console.log(messageClass)}
       <Notification className={`message ${messageClass}`} message={message} />
       <div>
         <button onClick={() => setShowAll(!showAll)}>
